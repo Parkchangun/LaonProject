@@ -26,7 +26,7 @@ To Do List(Calender)
 
 2021-07-01 ~ 201-07-02
 
-박찬건: react 사용법 익히기
-남인희: kotlin 사용법 익히기
-김가현, 김형배: MariaDB, Spring Boot 사용법 익히기
+박찬건: react 사용법 익히기<br>
+남인희: kotlin 사용법 익히기<br>
+김가현, 김형배: MariaDB, Spring Boot 사용법 익히기<br>
 

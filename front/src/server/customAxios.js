@@ -1,5 +1,16 @@
 import axios from 'axios';
 
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+module.exports = function (app) {
+  app.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'http://localhost:8080',
+      changeOrigin: true,
+    })
+  );
+};
 export default function customAxios(url, callback) {
   axios({
     url: '/api' + url,
@@ -10,7 +21,11 @@ export default function customAxios(url, callback) {
         */
     baseURL: 'http://localhost:8080',
     withCredentials: true,
-  }).then(function (response) {
-    callback(response.data);
+  }).then((response) => {
+    if (response.data) {
+      callback(response.data);
+    } else {
+      alert('failed');
+    }
   });
 }

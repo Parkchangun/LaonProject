@@ -53,7 +53,7 @@ function App() {
   useEffect(() => {
     //클라이언트의 IP주소를 알아내는 백엔드 함수 호출
     customAxios('/todo', callback);
-  }, []);
+  });
 
   return (
     // <Router>

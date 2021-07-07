@@ -3,31 +3,6 @@ import styled, { css } from 'styled-components';
 import { MdDone, MdDelete } from 'react-icons/md';
 import { useTodoDispatch } from '../context/ToDoContext';
 
-const Remove = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #dee2e6;
-  font-size: 24px;
-  cursor: pointer;
-  &:hover {
-    color: #ff6b6b;
-  }
-  display: none;
-`;
-
-const TodoItemBlock = styled.div`
-  display: flex;
-  align-items: center;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  &:hover {
-    ${Remove} {
-      display: flex;
-    }
-  }
-`;
-
 const CheckCircle = styled.div`
   width: 32px;
   height: 32px;
@@ -58,6 +33,31 @@ const Text = styled.div`
     css`
       color: #ced4da;
     `}
+`;
+
+const Remove = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dee2e6;
+  font-size: 24px;
+  cursor: pointer;
+  &:hover {
+    color: #ff6b6b;
+  }
+  display: none;
+`;
+
+const TodoItemBlock = styled.div`
+  display: flex;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  &:hover {
+    ${Remove} {
+      display: flex;
+    }
+  }
 `;
 
 function TodoItem({ id, done, text }) {

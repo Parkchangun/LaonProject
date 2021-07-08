@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTodoState } from '../context/ToDoContext';
-import ProgressBar from '@ramonak/react-progress-bar';
 
 const TodoHeadBlock = styled.div`
-  padding-top: 48px;
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-bottom: 24px;
-
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+  background-color: #5da0e4;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+
   h1 {
     margin: 0;
     font-size: 36px;
@@ -17,25 +18,12 @@ const TodoHeadBlock = styled.div`
   }
   .day {
     margin-top: 4px;
-    color: #868e96;
+    color: #343a40;
     font-size: 21px;
-  }
-  .tasks-left {
-    color: #20c997;
-    font-size: 18px;
-    margin-top: 40px;
-    font-weight: bold;
-  }
-  progress {
-    width: 100%;
   }
 `;
 
 function TodoHead() {
-  const todos = useTodoState();
-  const undoneTasks = todos.filter((todo) => !todo.done);
-  const doneTasks = todos.filter((todo) => todo.done);
-
   const today = new Date();
   const dateString = today.toLocaleDateString('ko-KR', {
     year: 'numeric',
@@ -49,14 +37,6 @@ function TodoHead() {
     <TodoHeadBlock>
       <h1>{dateString}</h1>
       <div className='day'>{dayName}</div>
-      <div className='tasks-left'>할 일 {undoneTasks.length}개 남음</div>
-      {/* <progress value={doneTasks.length} max={todos.length}></progress> */}
-      <ProgressBar
-        completed={(doneTasks.length / todos.length) * 100}
-        height='10px'
-        isLabelVisible={false}
-        bgColor='#20c997'
-      />
     </TodoHeadBlock>
   );
 }

@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
-import { useTodoDispatch, useTodoNextId } from '../context/ToDoContext';
+import {
+  useTodoDispatch,
+  useTodoNextId,
+  useTodoState,
+} from '../context/ToDoContext';
 import { Input } from '../../styles/CommonStyle';
 
 const CircleButton = styled.button`
@@ -68,9 +72,17 @@ const InputBox = styled.input`
 function TodoCreate() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
-
+  const state = useTodoState();
   const dispatch = useTodoDispatch();
-  const nextId = useTodoNextId();
+  // const nextId = useTodoNextId();
+  const res = Math.max.apply(
+    Math,
+    state.map(function (o) {
+      return o.id;
+    })
+  );
+  console.log(res);
+  console.log(state);
 
   const onToggle = () => setOpen(!open);
   const onChange = (e) => setValue(e.target.value);
@@ -79,14 +91,14 @@ function TodoCreate() {
     dispatch({
       type: 'CREATE',
       todo: {
-        id: nextId.current,
+        id: res + 1,
         text: value,
         done: false,
       },
     });
     setValue('');
     setOpen(false);
-    nextId.current += 1;
+    // nextId.current += 1;
   };
 
   useEffect(() => {

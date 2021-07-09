@@ -22,11 +22,12 @@ const initialTodos = [
     done: false,
   },
 ];
+// const initialTodos = [];
 
 function todoReducer(state, action) {
   switch (action.type) {
     case 'LOAD':
-      return state.concat(action);
+      return state.concat(action.data);
     case 'CREATE':
       return state.concat(action.todo);
     case 'TOGGLE':
@@ -46,14 +47,14 @@ const TodoNextIdContext = createContext();
 
 export function TodoProvider({ children }) {
   const [state, dispatch] = useReducer(todoReducer, initialTodos);
-  const nextId = useRef(5);
+  // const nextId = useRef(1);
 
   return (
     <TodoStateContext.Provider value={state}>
       <TodoDispatchContext.Provider value={dispatch}>
-        <TodoNextIdContext.Provider value={nextId}>
-          {children}
-        </TodoNextIdContext.Provider>
+        {/* <TodoNextIdContext.Provider value={nextId}> */}
+        {children}
+        {/* </TodoNextIdContext.Provider> */}
       </TodoDispatchContext.Provider>
     </TodoStateContext.Provider>
   );
@@ -73,10 +74,10 @@ export function useTodoDispatch() {
   }
   return context;
 }
-export function useTodoNextId() {
-  const context = useContext(TodoNextIdContext);
-  if (!context) {
-    throw new Error('Cannot Find TodoProvider');
-  }
-  return context;
-}
+// export function useTodoNextId() {
+//   const context = useContext(TodoNextIdContext);
+//   if (!context) {
+//     throw new Error('Cannot Find TodoProvider');
+//   }
+//   return context;
+// }

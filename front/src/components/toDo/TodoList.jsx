@@ -39,17 +39,16 @@ function TodoList() {
   const undoneTasks = todos.filter((todo) => !todo.done);
   const doneTasks = todos.filter((todo) => todo.done);
 
+  console.log(todos);
+
   //TodoList DownLoad
   useEffect(() => {
     console.log('effect');
     (async () => {
       const data = await getTodo();
       dispatch({ type: 'LOAD', data });
-      console.log(data);
     })();
   }, [dispatch]);
-
-  console.log(todos);
 
   return (
     <TodoBlock>

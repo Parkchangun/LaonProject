@@ -1,11 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
-import {
-  useTodoDispatch,
-  useTodoNextId,
-  useTodoState,
-} from '../context/ToDoContext';
+import { useTodoDispatch, useTodoState } from '../context/ToDoContext';
 import { Input } from '../../styles/CommonStyle';
 
 const CircleButton = styled.button`
@@ -81,8 +77,6 @@ function TodoCreate() {
       return o.id;
     })
   );
-  console.log(res);
-  console.log(state);
 
   const onToggle = () => setOpen(!open);
   const onChange = (e) => setValue(e.target.value);

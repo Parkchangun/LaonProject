@@ -45,11 +45,8 @@ function TodoList() {
     (async () => {
       const data = await getTodo();
       dispatch({ type: 'LOAD', data });
-      console.log(data);
     })();
   }, [dispatch]);
-
-  console.log(todos);
 
   return (
     <TodoBlock>

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { MainBlock, Input, flexCenterAlign } from '../../styles/CommonStyle';
+import {
+  MainBlock,
+  Input,
+  flexCenterAlign,
+  Button,
+} from '../../styles/CommonStyle';
 import { useTodoDispatch } from '../context/ToDoContext';
 
 const InsertForm = styled.div`
@@ -19,15 +24,19 @@ const InputBox = styled.input`
   ${Input}
 `;
 
+const ButtonBox = styled.button`
+  ${Button}
+`;
+
 function SignUp() {
   return (
     <LoginBox>
       <InsertForm>
         <InputBox name='id' placeholder='ID'></InputBox>
         <InputBox type='password' name='pw' placeholder='PW'></InputBox>
-        <button>회원가입</button>
+        <ButtonBox>가입하기</ButtonBox>
         <Link to='/'>
-          <button>취소</button>
+          <ButtonBox>취소하기</ButtonBox>
         </Link>
       </InsertForm>
     </LoginBox>

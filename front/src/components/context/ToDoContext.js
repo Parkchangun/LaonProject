@@ -26,8 +26,10 @@ const initialTodos = [
 
 function todoReducer(state, action) {
   switch (action.type) {
-    case 'LOAD':
+    case 'LOAD': {
+      console.log(action);
       return (state = action.data);
+    }
 
     case 'CREATE':
       return state.concat(action.todo);
@@ -39,8 +41,12 @@ function todoReducer(state, action) {
       return state.map((todo) =>
         todo.id === action.id ? { ...todo, text: action.value } : todo
       );
-    case 'REMOVE':
-      return state.filter((todo) => todo.id !== action.id);
+    case 'REMOVE': {
+      const temp = state.filter((todo) => todo.id !== action.id);
+      return temp.map((todo) =>
+        todo.id > action.id ? { ...todo, id: todo.id - 1 } : todo
+      );
+    }
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }

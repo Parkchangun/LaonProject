@@ -1,22 +1,53 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { MainBlock, Input, flexCenterAlign } from '../../styles/CommonStyle';
+import {
+  MainBlock,
+  Input,
+  flexCenterAlign,
+  Button,
+  Positive,
+  Negative,
+} from '../../styles/CommonStyle';
 import { useTodoDispatch } from '../context/ToDoContext';
-
-const InsertForm = styled.div`
-  width: 15rem;
-  height: 15rem;
-  background-color: orange;
-`;
 
 const LoginBox = styled.div`
   ${MainBlock}
   ${flexCenterAlign}
 `;
 
+const InsertForm = styled.div`
+  width: 30rem;
+  height: 20rem;
+  ${flexCenterAlign}
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const InputWrap = styled.div`
+  ${flexCenterAlign}
+  flex-direction: column;
+  width: 100%;
+`;
 const InputBox = styled.input`
   ${Input}
+  & + & {
+    margin-top: 20px;
+  }
+`;
+
+const ButtonWrap = styled.div`
+  ${flexCenterAlign}
+  flex-direction: column;
+  width: 100%;
+`;
+const ButtonBox = styled.button`
+  ${Button}
+  cursor: pointer;
+  ${Positive}
+  & + & {
+    margin-top: 20px;
+  }
 `;
 
 export default function SiginIn() {
@@ -24,7 +55,7 @@ export default function SiginIn() {
   // const [pw, setPW] = useState('');
   const [user, setUser] = useState({
     id: '',
-    pw: '',
+    password: '',
   });
   const dispatch = useTodoDispatch();
 
@@ -39,30 +70,34 @@ export default function SiginIn() {
     if (e.key === 'Enter') onSubmit();
   };
   const onSubmit = (e) => {
-    alert(`id = ${user.id} pw = ${user.pw}`);
+    alert(`id = ${user.id} pw = ${user.password}`);
   };
 
   return (
     <LoginBox>
       <InsertForm>
-        <InputBox
-          name='id'
-          placeholder='ID'
-          onChange={onChange}
-          value={user.id}
-        ></InputBox>
-        <InputBox
-          type='password'
-          name='pw'
-          placeholder='PW'
-          onChange={onChange}
-          value={user.pw}
-          onKeyPress={enterPress}
-        ></InputBox>
-        <button onClick={onSubmit}>로그인</button>
-        <Link to='/signup'>
-          <button>가입하기</button>
-        </Link>
+        <InputWrap>
+          <InputBox
+            name='id'
+            placeholder='ID'
+            onChange={onChange}
+            value={user.id}
+          ></InputBox>
+          <InputBox
+            type='password'
+            name='password'
+            placeholder='PASSWORD'
+            onChange={onChange}
+            value={user.password}
+            onKeyPress={enterPress}
+          ></InputBox>
+        </InputWrap>
+        <ButtonWrap>
+          <ButtonBox onClick={onSubmit}>로그인</ButtonBox>
+          <ButtonBox>
+            <Link to='/signup'>회원가입</Link>
+          </ButtonBox>
+        </ButtonWrap>
       </InsertForm>
     </LoginBox>
   );

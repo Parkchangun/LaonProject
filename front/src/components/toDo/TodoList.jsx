@@ -39,6 +39,8 @@ function TodoList() {
   const undoneTasks = todos.filter((todo) => !todo.done);
   const doneTasks = todos.filter((todo) => todo.done);
 
+  console.log(todos);
+
   //TodoList DownLoad
   useEffect(() => {
     console.log('effect');

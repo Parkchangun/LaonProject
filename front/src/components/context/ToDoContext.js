@@ -28,9 +28,8 @@ function todoReducer(state, action) {
   switch (action.type) {
     case 'LOAD': {
       console.log(action);
-      return (state = action.data);
+      return state.concat(action.data);
     }
-
     case 'CREATE':
       return state.concat(action.todo);
     case 'TOGGLE':

@@ -2,6 +2,7 @@
   "name": "laon-project",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:/8080",
   "dependencies": {
     "@ramonak/react-progress-bar": "^3.1.0",
     "@testing-library/jest-dom": "^5.14.1",

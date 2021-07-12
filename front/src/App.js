@@ -1,6 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import MainTemplate from './components/toDo/MainTemplate';
+import MainTemplate from './components/MainTemplate';
 import { TodoProvider } from './components/context/ToDoContext';
 import { UserProvider } from './components/context/UserContext';
 import { BrowserRouter } from 'react-router-dom';

@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from 'react';
 
-const token = null;
-// const token = '11123';
+// const token = null;
+const token = '11123';
 const initialUser = { token };
 
 function userReducer(state, action) {

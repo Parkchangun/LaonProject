@@ -66,8 +66,6 @@ function SignUp() {
     password: '',
   });
 
-  // const chnageID = (e) => setID(e.target.value);
-  // const changePW = (e) => setPW(e.target.value);
   const onChange = (e) =>
     setUser({
       ...user,

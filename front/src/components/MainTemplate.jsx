@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import TodoHead from './TodoHead';
-import TodoList from './TodoList';
-import TodoCreate from './TodoCreate';
-import { useUserState } from '../context/UserContext';
-import SiginIn from '../users/SignIn';
-import SignUp from '../users/SignUp';
+import TodoHead from './toDo/TodoHead';
+import TodoList from './toDo/TodoList';
+import TodoCreate from './toDo/TodoCreate';
+import { useUserState } from './context/UserContext';
+import SiginIn from './users/SignIn';
+import SignUp from './users/SignUp';
 import { Route } from 'react-router';
 
 const TodoTemplateBlock = styled.div`

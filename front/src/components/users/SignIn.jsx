@@ -59,16 +59,12 @@ const ButtonBox = styled.button`
 `;
 
 export default function SiginIn() {
-  // const [id, setID] = useState('');
-  // const [pw, setPW] = useState('');
   const [user, setUser] = useState({
     id: '',
     password: '',
   });
   const dispatch = useTodoDispatch();
 
-  // const chnageID = (e) => setID(e.target.value);
-  // const changePW = (e) => setPW(e.target.value);
   const onChange = (e) =>
     setUser({
       ...user,

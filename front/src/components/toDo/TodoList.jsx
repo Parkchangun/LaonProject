@@ -47,7 +47,7 @@ function TodoList() {
     (async () => {
       const data = await getTodo();
       console.log(data);
-      // dispatch({ type: 'LOAD', data });
+      dispatch({ type: 'LOAD', data });
     })();
   }, [dispatch]);
 

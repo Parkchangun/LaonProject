@@ -1,34 +1,34 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
-const initialTodos = [
-  {
-    id: 100,
-    text: '프로젝트 생성하기',
-    done: true,
-  },
-  {
-    id: 101,
-    text: '컴포넌트 스타일링하기',
-    done: true,
-  },
-  {
-    id: 102,
-    text: 'Context 만들기',
-    done: false,
-  },
-  {
-    id: 103,
-    text: '기능 구현하기',
-    done: false,
-  },
-];
-// const initialTodos = [];
+// const initialTodos = [
+//   {
+//     id: 100,
+//     text: '프로젝트 생성하기',
+//     done: true,
+//   },
+//   {
+//     id: 101,
+//     text: '컴포넌트 스타일링하기',
+//     done: true,
+//   },
+//   {
+//     id: 102,
+//     text: 'Context 만들기',
+//     done: false,
+//   },
+//   {
+//     id: 103,
+//     text: '기능 구현하기',
+//     done: false,
+//   },
+// ];
+const initialTodos = [];
 
 function todoReducer(state, action) {
   switch (action.type) {
     case 'LOAD': {
       console.log(action);
-      return state.concat(action.data);
+      return (state = action.data);
     }
     case 'CREATE':
       return state.concat(action.todo);

@@ -9,7 +9,7 @@ import {
   Positive,
   Negative,
 } from '../../styles/CommonStyle';
-import { useTodoDispatch } from '../context/ToDoContext';
+import { useUserDispatch } from '../context/UserContext';
 
 const SignBox = styled.div`
   ${MainBlock}
@@ -60,10 +60,10 @@ const ButtonBox = styled.button`
 
 export default function SiginIn() {
   const [user, setUser] = useState({
-    id: '',
+    userID: '',
     password: '',
   });
-  const dispatch = useTodoDispatch();
+  const dispatch = useUserDispatch();
 
   const onChange = (e) =>
     setUser({
@@ -74,7 +74,8 @@ export default function SiginIn() {
     if (e.key === 'Enter') onSubmit();
   };
   const onSubmit = (e) => {
-    alert(`id = ${user.id} pw = ${user.password}`);
+    alert(`id = ${user.userID} pw = ${user.password}`);
+    dispatch({ type: 'LOGIN', user });
   };
 
   return (
@@ -83,10 +84,10 @@ export default function SiginIn() {
       <InsertForm>
         <InputWrap>
           <InputBox
-            name='id'
+            name='userID'
             placeholder='ID'
             onChange={onChange}
-            value={user.id}
+            value={user.userID}
             autoFocus
           ></InputBox>
           <InputBox

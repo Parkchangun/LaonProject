@@ -1,13 +1,20 @@
 import { createContext, useContext, useReducer } from 'react';
+import { login, signup } from '../../api/api';
 
-// const token = null;
-const token = '11123';
+const token = null;
+// const token = '11123';
 const initialUser = { token };
 
 function userReducer(state, action) {
   switch (action.type) {
-    case 'LOGIN':
+    case 'LOGIN': {
+      console.log(action);
+      console.log(state);
+      // login(action.data);
+      return state;
+    }
     case 'SIGNUP':
+      return signup(action.user);
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }

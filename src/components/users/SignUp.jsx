@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { signup } from '../../api/api';
 import {
   MainBlock,
   Input,
@@ -10,6 +11,7 @@ import {
   Negative,
 } from '../../styles/CommonStyle';
 import { useTodoDispatch } from '../context/ToDoContext';
+import { useUserDispatch } from '../context/UserContext';
 
 const SignBox = styled.div`
   ${MainBlock}
@@ -62,9 +64,10 @@ function SignUp() {
   // const [id, setID] = useState('');
   // const [pw, setPW] = useState('');
   const [user, setUser] = useState({
-    id: '',
+    userID: '',
     password: '',
   });
+  const dispatch = useUserDispatch();
 
   const onChange = (e) =>
     setUser({
@@ -75,7 +78,8 @@ function SignUp() {
     if (e.key === 'Enter') onSubmit();
   };
   const onSubmit = (e) => {
-    alert(`id = ${user.id} pw = ${user.password}`);
+    alert(`id = ${user.userID} pw = ${user.password}`);
+    dispatch({ type: 'SIGNUP', user });
   };
 
   return (
@@ -84,10 +88,10 @@ function SignUp() {
       <InsertForm>
         <InputWrap>
           <InputBox
-            name='id'
+            name='userID'
             placeholder='ID'
             onChange={onChange}
-            value={user.id}
+            value={user.userID}
           ></InputBox>
           <InputBox
             type='password'

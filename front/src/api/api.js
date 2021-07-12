@@ -11,9 +11,10 @@ export async function getUser() {
 
 export async function getTodo() {
   try {
-    const response = await axios.get('/api/todo');
-    console.log(response);
+    const response = await axios.get('http://localhost:8080/api/todo');
+    console.log(response.data);
+    return response.data;
   } catch (e) {
-    console.error('error!!!', e);
+    console.error('error!!!', e.response.data);
   }
 }

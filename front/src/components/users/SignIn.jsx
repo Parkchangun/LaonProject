@@ -11,17 +11,24 @@ import {
 } from '../../styles/CommonStyle';
 import { useTodoDispatch } from '../context/ToDoContext';
 
-const LoginBox = styled.div`
+const SignBox = styled.div`
   ${MainBlock}
   ${flexCenterAlign}
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
+const TitleBox = styled.div`
+  margin-top: 2rem;
+  font-size: 1.5rem;
 `;
 
 const InsertForm = styled.div`
-  width: 30rem;
-  height: 20rem;
   ${flexCenterAlign}
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 100%;
+  height: 80%;
 `;
 
 const InputWrap = styled.div`
@@ -47,6 +54,7 @@ const ButtonBox = styled.button`
   ${Positive}
   & + & {
     margin-top: 20px;
+    ${Negative}
   }
 `;
 
@@ -74,7 +82,8 @@ export default function SiginIn() {
   };
 
   return (
-    <LoginBox>
+    <SignBox>
+      <TitleBox>로그인</TitleBox>
       <InsertForm>
         <InputWrap>
           <InputBox
@@ -82,11 +91,12 @@ export default function SiginIn() {
             placeholder='ID'
             onChange={onChange}
             value={user.id}
+            autoFocus
           ></InputBox>
           <InputBox
             type='password'
             name='password'
-            placeholder='PASSWORD'
+            placeholder='PW'
             onChange={onChange}
             value={user.password}
             onKeyPress={enterPress}
@@ -99,6 +109,6 @@ export default function SiginIn() {
           </ButtonBox>
         </ButtonWrap>
       </InsertForm>
-    </LoginBox>
+    </SignBox>
   );
 }

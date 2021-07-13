@@ -71,12 +71,12 @@ function TodoCreate() {
   const state = useTodoState();
   const dispatch = useTodoDispatch();
   // const nextId = useTodoNextId();
-  const res = Math.max.apply(
-    Math,
-    state.map(function (o) {
-      return o.id;
-    })
-  );
+  // const res = Math.max.apply(
+  //   Math,
+  //   state.map(function (o) {
+  //     return o.id;
+  //   })
+  // );
 
   const userID = localStorage.getItem('token');
   const onToggle = () => setOpen(!open);

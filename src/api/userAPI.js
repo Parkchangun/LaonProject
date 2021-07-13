@@ -12,13 +12,18 @@ export const userAction = async (history) => {
   console.log(userData.password);
   console.log(userData);
   console.log(history);
+  //Login
   if (history === undefined) {
     await login(userData);
     console.log('LOGIN END');
     return;
   }
-
-  await signup(userData);
+  //Sign Up
+  const unduplicate = await signup(userData);
+  if (unduplicate === false) {
+    alert('중복된 아이디입니다!');
+    return;
+  }
   console.log('SIGNUP END');
   history.push('/');
   return;

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { signup } from '../../api/api';
+
 import {
   MainBlock,
   Input,
@@ -10,8 +10,7 @@ import {
   Positive,
   Negative,
 } from '../../styles/CommonStyle';
-import { useTodoDispatch } from '../context/ToDoContext';
-import { useUserDispatch } from '../context/UserContext';
+import { userAction } from '../../api/userAPI';
 
 const SignBox = styled.div`
   ${MainBlock}
@@ -60,26 +59,28 @@ const ButtonBox = styled.button`
   }
 `;
 
-function SignUp() {
+function SignUp({ history }) {
   // const [id, setID] = useState('');
   // const [pw, setPW] = useState('');
-  const [user, setUser] = useState({
-    userID: '',
-    password: '',
-  });
-  const dispatch = useUserDispatch();
 
-  const onChange = (e) =>
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
+  // const [user, setUser] = useState({
+  //   userID: '',
+  //   password: '',
+  // });
+
+  // const onChange = (e) =>
+  //   setUser({
+  //     ...user,
+  //     [e.target.name]: e.target.value,
+  //   });
+
+  console.log(history);
+
   const enterPress = (e) => {
     if (e.key === 'Enter') onSubmit();
   };
-  const onSubmit = (e) => {
-    alert(`id = ${user.userID} pw = ${user.password}`);
-    dispatch({ type: 'SIGNUP', user });
+  const onSubmit = () => {
+    userAction(history);
   };
 
   return (
@@ -88,17 +89,17 @@ function SignUp() {
       <InsertForm>
         <InputWrap>
           <InputBox
+            id='userID'
             name='userID'
             placeholder='ID'
-            onChange={onChange}
-            value={user.userID}
+            autoFocus
+            required={true}
           ></InputBox>
           <InputBox
+            id='password'
             type='password'
             name='password'
             placeholder='PASSWORD'
-            onChange={onChange}
-            value={user.password}
             onKeyPress={enterPress}
           ></InputBox>
         </InputWrap>

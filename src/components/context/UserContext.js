@@ -13,8 +13,9 @@ function userReducer(state, action) {
       // login(action.data);
       return state;
     }
-    case 'SIGNUP':
+    case 'SIGNUP': {
       return signup(action.user);
+    }
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }

@@ -78,6 +78,7 @@ function TodoCreate() {
     })
   );
 
+  const userID = localStorage.getItem('token');
   const onToggle = () => setOpen(!open);
   const onChange = (e) => setValue(e.target.value);
   const onSubmit = (e) => {
@@ -85,9 +86,8 @@ function TodoCreate() {
     dispatch({
       type: 'CREATE',
       todo: {
-        id: res + 1,
-        text: value,
-        done: false,
+        userID: userID,
+        content: value,
       },
     });
     setValue('');

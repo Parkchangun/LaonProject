@@ -2,7 +2,7 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import MainTemplate from './components/MainTemplate';
 import { TodoProvider } from './components/context/ToDoContext';
-import { UserProvider } from './components/context/UserContext';
+// import { UserProvider } from './components/context/UserContext';
 import { BrowserRouter } from 'react-router-dom';
 const GlobalStyle = createGlobalStyle`
   body {
@@ -19,14 +19,14 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <UserProvider>
-      <TodoProvider>
-        <GlobalStyle />
-        <BrowserRouter>
-          <MainTemplate />
-        </BrowserRouter>
-      </TodoProvider>
-    </UserProvider>
+    // <UserProvider>
+    <TodoProvider>
+      <GlobalStyle />
+      <BrowserRouter>
+        <MainTemplate />
+      </BrowserRouter>
+    </TodoProvider>
+    // </UserProvider>
   );
 }
 

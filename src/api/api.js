@@ -1,43 +1,43 @@
 import axios from 'axios';
 
 // User Axios
-export async function login(userData) {
+export const login = async (userData) => {
   try {
-    const response = await axios.post(
-      'http://localhost:8080/api/login',
-      userData
-    );
-    if (response.status >= 200 && response.status <= 204) {
-    }
-    return response;
+    const response = await axios.get('http://localhost:8080/api/login', {
+      params: {
+        userID: userData.userID,
+        password: userData.password,
+      },
+    });
+    // if (response.status >= 200 && response.status <= 204) {
+    console.log('LOGIN ASYNC');
   } catch (e) {
     console.error(e);
   }
-}
-export async function signup(userData) {
-  axios
-    .post('http://localhost:8080/api/signup', userData)
-    .then((response) => {
-      if (response.status >= 200 && response.status <= 204) {
-        alert('가입에 성공하셨습니다!');
-        this.props.history.push('/');
-      }
-    })
-    .catch(() => {
-      alert('이미 가입된 아이디입니다.');
-    });
-}
+};
+export const signup = async (userData) => {
+  console.log('ASYNC START');
+  try {
+    const res = await axios.post('http://localhost:8080/api/signup', userData);
+    console.log(res);
+    alert('가입 성공@_@');
+  } catch (e) {
+    alert(`이미 가입된 아이디입니다. ${e}`);
+  } finally {
+    console.log('ASYNC END');
+  }
+};
 //  User Axios End
 
 // TodoList Axios
-export async function getTodo() {
+export const getTodo = async () => {
   try {
-    const response = await axios.post('http://localhost:8080/api/todo');
+    const response = await axios.get('http://localhost:8080/api/todo');
+
     console.log(response.data);
-    return response.data;
   } catch (e) {
     console.error('error!!!', e.response.data);
   }
-}
+};
 
 // TodoList Axios End

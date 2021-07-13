@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import TodoHead from './toDo/TodoHead';
 import TodoList from './toDo/TodoList';
 import TodoCreate from './toDo/TodoCreate';
-import { useUserState } from './context/UserContext';
 import SiginIn from './users/SignIn';
 import SignUp from './users/SignUp';
 import { Route } from 'react-router';
@@ -23,10 +22,9 @@ const TodoTemplateBlock = styled.div`
   flex-direction: column;
 `;
 
-function Home() {
-  const state = useUserState();
-  console.log(state);
-  if (state.token === null) {
+const Home = () => {
+  const token = null;
+  if (token === null) {
     return <SiginIn></SiginIn>;
   }
   return (
@@ -35,7 +33,7 @@ function Home() {
       <TodoCreate />
     </>
   );
-}
+};
 
 function MainTemplate() {
   return (

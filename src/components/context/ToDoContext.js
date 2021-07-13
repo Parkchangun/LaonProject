@@ -38,10 +38,10 @@ function todoReducer(state, action) {
       );
     case 'UPDATE':
       return state.map((todo) =>
-        todo.id === action.id ? { ...todo, text: action.value } : todo
+        todo.id === action.id ? { ...todo, content: action.value } : todo
       );
     case 'REMOVE': {
-      const temp = state.filter((todo) => todo.id !== action.id);
+      const temp = state.filter((todo) => todo.content !== action.content);
       return temp.map((todo) =>
         todo.id > action.id ? { ...todo, id: todo.id - 1 } : todo
       );

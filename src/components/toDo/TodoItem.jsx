@@ -65,13 +65,13 @@ const TodoItemBlock = styled.div`
   }
 `;
 
-function TodoItem({ id, done, text }) {
+function TodoItem({ id, done, content }) {
   const dispatch = useTodoDispatch();
   const onToggle = () => dispatch({ type: 'TOGGLE', id });
   const onRemove = () => dispatch({ type: 'REMOVE', id });
 
   //Update Code
-  const [value, setValue] = useState(text);
+  const [value, setValue] = useState(content);
   const onChange = (e) => setValue(e.target.value);
   const onSubmit = (e) => {
     e.preventDefault();

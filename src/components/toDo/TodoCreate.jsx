@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 import { useTodoDispatch, useTodoState } from '../context/ToDoContext';
 import { Input } from '../../styles/CommonStyle';
+import { createTodo } from '../../api/api';
 
 const CircleButton = styled.button`
   background: #38d9a9;
@@ -81,15 +82,23 @@ function TodoCreate() {
   const userID = localStorage.getItem('token');
   const onToggle = () => setOpen(!open);
   const onChange = (e) => setValue(e.target.value);
+
   const onSubmit = (e) => {
     e.preventDefault(); //새로고침 방지
-    dispatch({
-      type: 'CREATE',
-      todo: {
+    (async () => {
+      //list 생성 후 백엔드에 전송
+      const newList = {
         userID: userID,
         content: value,
-      },
-    });
+      };
+      const todo = await createTodo(newList);
+      //새로 만들어진 리스트 다시 그려줌
+      dispatch({
+        type: 'LOAD',
+        todo,
+      });
+    })();
+
     setValue('');
     setOpen(false);
     // nextId.current += 1;

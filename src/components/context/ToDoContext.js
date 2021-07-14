@@ -35,7 +35,8 @@ function todoReducer(state, action) {
       (async () => {
         await createTodo(action.todo);
       })();
-      return;
+      console.log(state);
+      return state;
     }
     // return state.concat(action.todo);
     case 'TOGGLE':

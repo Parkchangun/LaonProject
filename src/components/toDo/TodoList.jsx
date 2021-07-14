@@ -49,7 +49,7 @@ function TodoList() {
       console.log(todo);
       dispatch({ type: 'LOAD', todo });
     })();
-  }, [dispatch]);
+  }, []);
 
   return (
     <TodoBlock>

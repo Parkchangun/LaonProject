@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { MdDone, MdDelete } from 'react-icons/md';
 import { useTodoDispatch } from '../context/ToDoContext';
+import { updateTodo } from '../../api/api';
 
 const CheckCircle = styled.div`
   width: 32px;
@@ -67,12 +68,29 @@ const TodoItemBlock = styled.div`
 
 function TodoItem({ id, done, content }) {
   const dispatch = useTodoDispatch();
-  const onToggle = () => dispatch({ type: 'TOGGLE', id });
-  const onRemove = () => dispatch({ type: 'REMOVE', id });
-
-  //Update Code
   const [value, setValue] = useState(content);
+  const userID = localStorage.getItem('token');
+
+  const onRemove = () => dispatch({ type: 'REMOVE', id });
+  //Update Code
+  const onToggle = () => {
+    (async () => {
+      const newList = {
+        list_num: id,
+        userID: userID,
+        content: value,
+        done: !done,
+      };
+      const todo = await updateTodo(newList);
+
+      dispatch({
+        type: 'LOAD',
+        todo,
+      });
+    })();
+  };
   const onChange = (e) => setValue(e.target.value);
+
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch({

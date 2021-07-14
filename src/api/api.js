@@ -49,6 +49,17 @@ export const createTodo = async (todoData) => {
       todoData
     );
     console.log(response);
+    return response.data;
+  } catch (e) {
+    console.error('error!!!', e.response);
+  }
+};
+
+export const updateTodo = async (todoData) => {
+  try {
+    const response = await axios.put('http://localhost:8080/api/put', todoData);
+    console.log('UPDATE DATA: ', response);
+    return response.data;
   } catch (e) {
     console.error('error!!!', e.response);
   }

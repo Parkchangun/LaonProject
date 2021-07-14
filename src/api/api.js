@@ -7,9 +7,10 @@ export const login = async (userData) => {
       'http://localhost:8080/api/login',
       userData
     );
-    console.log(response);
-    // if (response.status >= 200 && response.status <= 204) {
+    console.log(response.data);
     console.log('LOGIN ASYNC');
+    return response.data;
+    // if (response.status >= 200 && response.status <= 204) {
   } catch (e) {
     console.error(`로그인 에러!>>${e}`);
   }
@@ -30,12 +31,26 @@ export const signup = async (userData) => {
 
 // TodoList Axios
 export const getTodo = async () => {
+  const userID = localStorage.getItem('token');
+  console.log(typeof userID);
   try {
-    const response = await axios.get('http://localhost:8080/api/todo');
+    const response = await axios.post('http://localhost:8080/api/todo', userID);
 
-    console.log(response.data);
+    console.log(response);
   } catch (e) {
-    console.error('error!!!', e.response.data);
+    console.error('error!!!', e.response);
+  }
+};
+
+export const createTodo = async (todoData) => {
+  try {
+    const response = await axios.post(
+      'http://localhost:8080/api/post',
+      todoData
+    );
+    console.log(response);
+  } catch (e) {
+    console.error('error!!!', e.response);
   }
 };
 

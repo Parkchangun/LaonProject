@@ -13,8 +13,15 @@ export const userAction = async (history) => {
   console.log(userData);
   console.log(history);
   //Login
-  if (history === undefined) {
-    await login(userData);
+  if (history.location.pathname === '/') {
+    const token = await login(userData);
+    if (token) {
+      alert('성공');
+      localStorage.setItem('token', token);
+      history.push('/todo');
+      return;
+    }
+    alert('실패');
     console.log('LOGIN END');
     return;
   }

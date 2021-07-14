@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TodoHeadBlock = styled.div`
+const MainHeaderBlock = styled.div`
   padding-top: 2rem;
   padding-left: 2rem;
   padding-bottom: 2rem;
@@ -30,14 +30,13 @@ function TodoHead() {
     month: 'long',
     day: 'numeric',
   });
-
   const dayName = today.toLocaleDateString('ko-KR', { weekday: 'long' });
 
   return (
-    <TodoHeadBlock>
+    <MainHeaderBlock>
       <h1>{dateString}</h1>
       <div className='day'>{dayName}</div>
-    </TodoHeadBlock>
+    </MainHeaderBlock>
   );
 }
 

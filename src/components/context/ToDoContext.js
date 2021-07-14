@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
+import { createTodo } from '../../api/api';
 
 // const initialTodos = [
 //   {
@@ -30,8 +31,13 @@ function todoReducer(state, action) {
       console.log(action);
       return (state = action.data);
     }
-    case 'CREATE':
-      return state.concat(action.todo);
+    case 'CREATE': {
+      (async () => {
+        await createTodo(action.todo);
+      })();
+      return;
+    }
+    // return state.concat(action.todo);
     case 'TOGGLE':
       return state.map((todo) =>
         todo.id === action.id ? { ...todo, done: !todo.done } : todo

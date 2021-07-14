@@ -29,7 +29,7 @@ function todoReducer(state, action) {
   switch (action.type) {
     case 'LOAD': {
       console.log(action);
-      return (state = action.data);
+      return (state = action.todo);
     }
     case 'CREATE': {
       (async () => {

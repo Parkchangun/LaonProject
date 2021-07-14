@@ -32,11 +32,11 @@ export const signup = async (userData) => {
 // TodoList Axios
 export const getTodo = async () => {
   const userID = localStorage.getItem('token');
-  console.log(typeof userID);
+  console.log(userID);
   try {
     const response = await axios.post('http://localhost:8080/api/todo', userID);
-
     console.log(response);
+    return response.data;
   } catch (e) {
     console.error('error!!!', e.response);
   }

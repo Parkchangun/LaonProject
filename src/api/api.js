@@ -57,7 +57,23 @@ export const createTodo = async (todoData) => {
 
 export const updateTodo = async (todoData) => {
   try {
-    const response = await axios.put('http://localhost:8080/api/put', todoData);
+    const response = await axios.put(
+      'http://localhost:8080/api/update',
+      todoData
+    );
+    console.log('UPDATE DATA: ', response);
+    return response.data;
+  } catch (e) {
+    console.error('error!!!', e.response);
+  }
+};
+
+export const deleteTodo = async (todoData) => {
+  try {
+    const response = await axios.delete(
+      'http://localhost:8080/api/delete',
+      todoData
+    );
     console.log('UPDATE DATA: ', response);
     return response.data;
   } catch (e) {

@@ -30,22 +30,10 @@ export const signup = async (userData) => {
 //  User Axios End
 
 // TodoList Axios
-export const getTodo = async () => {
-  const userID = localStorage.getItem('token');
-  console.log(userID);
-  try {
-    const response = await axios.post('http://localhost:8080/api/todo', userID);
-    console.log(response);
-    return response.data;
-  } catch (e) {
-    console.error('error!!!', e.response);
-  }
-};
-
 export const createTodo = async (todoData) => {
   try {
     const response = await axios.post(
-      'http://localhost:8080/api/post',
+      'http://localhost:8080/api/create',
       todoData
     );
     console.log(response);
@@ -55,9 +43,21 @@ export const createTodo = async (todoData) => {
   }
 };
 
+export const getTodo = async () => {
+  const userID = localStorage.getItem('token');
+  console.log(userID);
+  try {
+    const response = await axios.post('http://localhost:8080/api/read', userID);
+    console.log(response);
+    return response.data;
+  } catch (e) {
+    console.error('error!!!', e.response);
+  }
+};
+
 export const updateTodo = async (todoData) => {
   try {
-    const response = await axios.put(
+    const response = await axios.post(
       'http://localhost:8080/api/update',
       todoData
     );
@@ -68,12 +68,13 @@ export const updateTodo = async (todoData) => {
   }
 };
 
-export const deleteTodo = async (todoData) => {
+export const deleteTodo = async ({ listNum, userID }) => {
+  console.log('delete: ', listNum, userID);
   try {
-    const response = await axios.delete(
-      'http://localhost:8080/api/delete',
-      todoData
-    );
+    const response = await axios.post('http://localhost:8080/api/delete', {
+      listNum: listNum,
+      userID: userID,
+    });
     console.log('UPDATE DATA: ', response);
     return response.data;
   } catch (e) {

@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { createTodo } from '../../api/api';
 
 // const initialTodos = [
 //   {
@@ -31,28 +30,28 @@ function todoReducer(state, action) {
       console.log(action);
       return (state = action.todo);
     }
-    case 'CREATE': {
-      (async () => {
-        await createTodo(action.todo);
-      })();
-      console.log(state);
-      return state;
-    }
-    // return state.concat(action.todo);
-    case 'TOGGLE':
-      return state.map((todo) =>
-        todo.id === action.id ? { ...todo, done: !todo.done } : todo
-      );
-    case 'UPDATE':
-      return state.map((todo) =>
-        todo.id === action.id ? { ...todo, content: action.value } : todo
-      );
-    case 'REMOVE': {
-      const temp = state.filter((todo) => todo.content !== action.content);
-      return temp.map((todo) =>
-        todo.id > action.id ? { ...todo, id: todo.id - 1 } : todo
-      );
-    }
+    // case 'CREATE': {
+    //   (async () => {
+    //     await createTodo(action.todo);
+    //   })();
+    //   console.log(state);
+    //   return state;
+    // }
+    // // return state.concat(action.todo);
+    // case 'TOGGLE':
+    //   return state.map((todo) =>
+    //     todo.id === action.id ? { ...todo, done: !todo.done } : todo
+    //   );
+    // case 'UPDATE':
+    //   return state.map((todo) =>
+    //     todo.id === action.id ? { ...todo, content: action.value } : todo
+    //   );
+    // case 'REMOVE': {
+    //   const temp = state.filter((todo) => todo.content !== action.content);
+    //   return temp.map((todo) =>
+    //     todo.id > action.id ? { ...todo, id: todo.id - 1 } : todo
+    //   );
+    // }
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }

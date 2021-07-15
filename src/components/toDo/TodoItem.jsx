@@ -71,24 +71,16 @@ function TodoItem({ id, done, content }) {
   const [value, setValue] = useState(content);
   const userID = localStorage.getItem('token');
 
-  const onRemove = () => {
-    (async () => {
-      const todo = await deleteTodo();
-      dispatch({
-        type: 'LOAD',
-        todo,
-      });
-    })();
-  };
   //Update Code
   const onToggle = () => {
     (async () => {
       const newList = {
-        list_num: id,
+        listNum: id,
         userID: userID,
         content: value,
         done: !done,
       };
+
       const todo = await updateTodo(newList);
 
       dispatch({
@@ -99,13 +91,17 @@ function TodoItem({ id, done, content }) {
   };
   const onChange = (e) => {
     setValue(e.target.value);
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
     (async () => {
       const newList = {
-        list_num: id,
+        listNum: id,
         userID: userID,
         content: value,
         done: done,
       };
+
       const todo = await updateTodo(newList);
 
       dispatch({
@@ -115,14 +111,22 @@ function TodoItem({ id, done, content }) {
     })();
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    dispatch({
-      type: 'UPDATE',
-      id,
-      value,
-    });
+  const onRemove = () => {
+    (async () => {
+      const newList = {
+        listNum: id,
+        userID: userID,
+      };
+
+      const todo = await deleteTodo(newList);
+
+      dispatch({
+        type: 'LOAD',
+        todo,
+      });
+    })();
   };
+
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={onToggle}>

@@ -64,8 +64,8 @@ function TodoList() {
       </TaskBlock>
       {todos.map((todo) => (
         <TodoItem
-          key={todo.list_num}
-          id={todo.list_num}
+          key={todo.listNum}
+          id={todo.listNum}
           content={todo.content}
           done={todo.done}
         />

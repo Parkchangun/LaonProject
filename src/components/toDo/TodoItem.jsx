@@ -97,7 +97,23 @@ function TodoItem({ id, done, content }) {
       });
     })();
   };
-  const onChange = (e) => setValue(e.target.value);
+  const onChange = (e) => {
+    setValue(e.target.value);
+    (async () => {
+      const newList = {
+        list_num: id,
+        userID: userID,
+        content: value,
+        done: done,
+      };
+      const todo = await updateTodo(newList);
+
+      dispatch({
+        type: 'LOAD',
+        todo,
+      });
+    })();
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();

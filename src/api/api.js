@@ -43,7 +43,7 @@ export const createTodo = async (todoData) => {
   }
 };
 
-export const getTodo = async () => {
+export const readTodo = async () => {
   const userID = localStorage.getItem('token');
   console.log(userID);
   try {
@@ -68,17 +68,16 @@ export const updateTodo = async (todoData) => {
   }
 };
 
-export const deleteTodo = async ({ listNum, userID }) => {
-  console.log('delete: ', listNum, userID);
+export const deleteTodo = async (userData) => {
   try {
-    const response = await axios.post('http://localhost:8080/api/delete', {
-      listNum: listNum,
-      userID: userID,
-    });
+    const response = await axios.post(
+      'http://localhost:8080/api/delete',
+      userData
+    );
     console.log('UPDATE DATA: ', response);
     return response.data;
   } catch (e) {
-    console.error('error!!!', e.response);
+    console.error('error!!!', e);
   }
 };
 

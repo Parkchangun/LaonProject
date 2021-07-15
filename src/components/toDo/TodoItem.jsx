@@ -76,7 +76,7 @@ function TodoItem({ id, done, content }) {
     (async () => {
       const newList = {
         listNum: id,
-        userID: userID,
+        userID,
         content: value,
         done: !done,
       };
@@ -97,9 +97,9 @@ function TodoItem({ id, done, content }) {
     (async () => {
       const newList = {
         listNum: id,
-        userID: userID,
+        userID,
         content: value,
-        done: done,
+        done,
       };
 
       const todo = await updateTodo(newList);
@@ -115,7 +115,9 @@ function TodoItem({ id, done, content }) {
     (async () => {
       const newList = {
         listNum: id,
-        userID: userID,
+        userID,
+        content: value,
+        done,
       };
 
       const todo = await deleteTodo(newList);

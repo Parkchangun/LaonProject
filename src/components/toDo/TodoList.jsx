@@ -4,7 +4,7 @@ import ProgressBar from '@ramonak/react-progress-bar';
 import { MainBlock } from '../../styles/CommonStyle';
 import TodoItem from './TodoItem';
 import { useTodoState, useTodoDispatch } from '../context/ToDoContext';
-import { getTodo } from '../../api/api';
+import { readTodo } from '../../api/api';
 
 const TodoBlock = styled.div`
   ${MainBlock}
@@ -45,7 +45,7 @@ function TodoList() {
   useEffect(() => {
     console.log('effect');
     (async () => {
-      const todo = await getTodo();
+      const todo = await readTodo();
       console.log(todo);
       dispatch({ type: 'LOAD', todo });
     })();

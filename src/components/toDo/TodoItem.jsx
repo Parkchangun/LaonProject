@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { MdDone, MdDelete } from 'react-icons/md';
 import { useTodoDispatch } from '../context/ToDoContext';
-import { deleteTodo, updateTodo } from '../../api/api';
+import { deleteTodo, updateTodo } from '../../api/todoAPI';
 
 const CheckCircle = styled.div`
   width: 32px;

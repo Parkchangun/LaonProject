@@ -1,4 +1,4 @@
-import { login, signup } from './api';
+import axios from 'axios';
 
 const userData = {
   userID: '',
@@ -34,4 +34,32 @@ export const userAction = async (history) => {
   console.log('SIGNUP END');
   history.push('/');
   return;
+};
+
+export const login = async (userData) => {
+  try {
+    const response = await axios.post(
+      'http://localhost:8080/api/login',
+      userData
+    );
+    console.log(response.data);
+    console.log('LOGIN ASYNC');
+    return response.data;
+    // if (response.status >= 200 && response.status <= 204) {
+  } catch (e) {
+    console.error(`로그인 에러!>>${e}`);
+  }
+};
+
+export const signup = async (userData) => {
+  console.log('ASYNC START');
+  try {
+    const res = await axios.post('http://localhost:8080/api/signup', userData);
+    console.log(res.data);
+    return res.data;
+  } catch (e) {
+    alert(`에러 발생!${e}`);
+  } finally {
+    console.log('ASYNC END');
+  }
 };

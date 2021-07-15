@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
-import { useTodoDispatch, useTodoState } from '../context/ToDoContext';
+import { useTodoDispatch } from '../context/ToDoContext';
 import { Input } from '../../styles/CommonStyle';
-import { createTodo } from '../../api/api';
+import { createTodo } from '../../api/todoAPI';
 
 const CircleButton = styled.button`
   background: #38d9a9;
@@ -69,16 +69,7 @@ const InputBox = styled.input`
 function TodoCreate() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
-  const state = useTodoState();
   const dispatch = useTodoDispatch();
-  // const nextId = useTodoNextId();
-  // const res = Math.max.apply(
-  //   Math,
-  //   state.map(function (o) {
-  //     return o.id;
-  //   })
-  // );
-
   const userID = localStorage.getItem('token');
   const onToggle = () => setOpen(!open);
   const onChange = (e) => setValue(e.target.value);
@@ -117,7 +108,7 @@ function TodoCreate() {
           <InsertForm onSubmit={onSubmit}>
             <InputBox
               autoFocus
-              placeholder='할 일 입력 후, 엔터 ㄱ'
+              placeholder='할 일 입력 후, 엔터를 입력하세요'
               onChange={onChange}
               value={value}
             />
